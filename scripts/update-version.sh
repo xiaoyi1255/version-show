@@ -27,7 +27,7 @@ if [ "$CURRENT_BRANCH" == "master" ] && ! echo "$latest_commit_msg" | grep -q "U
 
   exit 0
 fi
-
+echo "⏹️ "
 
 
 

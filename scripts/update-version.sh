@@ -13,7 +13,7 @@ echo "当前分支: $CURRENT_BRANCH"
 # 2️⃣ 判断是否为更新版本号，是终止
 latest_commit_msg=$(git log -1 --pretty=%B)
 echo "最新提交信息: $latest_commit_msg"
-if [ "$CURRENT_BRANCH" == "master" ] && !echo "$latest_commit_msg" | grep -q "UPDAT_VERSION"; then
+if [ "$CURRENT_BRANCH" == "master" ] && ! echo "$latest_commit_msg" | grep -q "UPDAT_VERSION"; then
   # 3️⃣ 判断结束，生成版本号
   TIMESTAMP=$(date "+%Y%m%d%H%M%S")
   mkdir -p public/js

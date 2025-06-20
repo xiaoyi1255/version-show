@@ -8,7 +8,7 @@ CURRENT_BRANCH=$(git branch --show-current)
 echo "当前分支: $CURRENT_BRANCH"
 
 # 2️⃣ 如果不是 test 分支，则终止脚本
-if [ "$CURRENT_BRANCH" != "test" ]; then
+if [ "$CURRENT_BRANCH" != "master" ]; then
   echo "⏹️ 当前分支不是 test，终止执行！"
   exit 1  # 退出码 1 表示失败
 fi
@@ -25,6 +25,7 @@ echo "console.log('version:', '$TIMESTAMP');" > public/js/version.js
 
 echo "✅ 版本号已更新: $TIMESTAMP"
 
-
+LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
+echo "Last commit: $LAST_COMMIT_MSG"
 
 

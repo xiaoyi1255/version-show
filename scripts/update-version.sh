@@ -19,7 +19,7 @@ if [ "$CURRENT_BRANCH" == "master" ] && ! echo "$latest_commit_msg" | grep -q "U
   git commit -m "UPDAT_VERSION: $TIMESTAMP"
   git push
 
-  exit 0
+  # exit 0
 fi
 echo "⏹️ "
 

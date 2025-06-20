@@ -1,1 +1,1 @@
-console.log('version:', '2025062022322212');
+console.log('version:', '20250620ss22322212');

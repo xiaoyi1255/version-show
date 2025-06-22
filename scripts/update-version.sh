@@ -1,6 +1,9 @@
 #!/bin/sh
 echo "🚀 正在执行 update-version.sh ..."
 
+
+export TZ=Asia/Shanghai
+echo "Using date from: $(which date)"
 # 1️⃣  判断当前分支为 test 分支; 不是跳过
 # 2️⃣ 判断是否为更新版本号，是跳过
 # 3️⃣ 判断结束，生成版本号
@@ -9,7 +12,7 @@ echo "当前分支: $CURRENT_BRANCH"
 latest_commit_msg=$(git log -1 --pretty=%B)
 echo "最新提交信息: $latest_commit_msg"
 if [ "$CURRENT_BRANCH" == "master" ] && ! echo "$latest_commit_msg" | grep -q "UPDAT_VERSION"; then
-  TIMESTAMP=$(date "+%Y%m%d%H%M%S")
+  TIMESTAMP=$(date "+%Y%m%d%H%M%S%3N")
   mkdir -p public/js
 
   echo "console.log('version:', '$TIMESTAMP');" > public/js/version.js

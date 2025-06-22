@@ -6,22 +6,28 @@ const { execSync } = require('child_process');
 const branch = execSync('git branch --show-current', { encoding: 'utf-8' }).trim();
 console.log(`当前分支: ${branch}`);
 
-if (branch !== 'test') {
+if (branch !== 'master') {
   console.log('⏹️ 当前分支不是 test，终止执行！');
   process.exit(0);
   
 }
-const now = new Date();
-const year = now.getFullYear();
-const month = String(now.getMonth() + 1).padStart(2, "0");
-const day = String(now.getDate()).padStart(2, "0");
-const hours = String(now.getHours()).padStart(2, "0");
-const minutes = String(now.getMinutes()).padStart(2, "0");
-const seconds = String(now.getSeconds()).padStart(2, "0");
-const milliseconds = String(now.getMilliseconds());
+function getTimestamp() {
+  const now = new Date();
 
-const VERSION = `${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
+  const pad = (num, len = 2) => num.toString().padStart(len, '0');
 
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1);
+  const day = pad(now.getDate());
+  const hour = pad(now.getHours());
+  const minute = pad(now.getMinutes());
+  const second = pad(now.getSeconds());
+  const millisecond = pad(now.getMilliseconds(), 3); // 保证 3 位数
+
+  return `${year}${month}${day}${hour}${minute}${second}${millisecond}`;
+}
+
+const VERSION = getTimestamp()
 const VERSION_FILE = 'public/js/version.js';
 // 确保目录存在
 fs.mkdirSync(path.dirname(VERSION_FILE), { recursive: true });
